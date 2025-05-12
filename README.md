@@ -1,12 +1,90 @@
-# React + Vite
+# QR Buddy - Modern QR Code Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+QR Buddy is a modern, intuitive QR code generator built with React and Tailwind CSS. Create beautiful, customizable QR codes with ease.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Real-time QR Generation**: Instantly generate QR codes as you type
+- **Customization Options**:
+  - Custom title for each QR code
+  - Adjustable QR code size (128px to 512px)
+  - Custom background color
+  - Custom QR code color
+  - Downloadable as PNG with title included
+- **Modern UI/UX**:
+  - Clean, responsive design
+  - Glass-morphism effects
+  - Smooth animations and transitions
+  - Mobile-friendly interface
+- **Export Options**:
+  - High-quality PNG export (2x scale)
+  - Custom filename support
+  - Includes title in exported image
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js
+- Tailwind CSS
+- react-qr-code
+- html2canvas
+
+## 🛠️ Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/qr-buddy.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd qr-buddy
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 🎯 Usage
+
+1. Enter your text or URL in the input field
+2. (Optional) Add a title for your QR code
+3. Customize the appearance:
+   - Adjust the size using the slider
+   - Pick custom colors for background and QR code
+4. Click the download button to save your QR code as a PNG file
+
+## 🎨 Customization
+
+- **Size**: Adjust QR code size from 128x128 to 512x512 pixels
+- **Colors**: Full RGB color picker for both background and QR code
+- **Title**: Optional title that appears both on display and in the downloaded image
+- **Theme**: Quick reset option to restore default styling
+
+## 📱 Responsive Design
+
+- Adapts to all screen sizes
+- Mobile-first approach
+- Touch-friendly controls
+- Maintains functionality across devices
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Credits
+
+Created by [Aditya Bansal](https://aditya-bansal.tech)
+
+---
+
+⭐️ Star this repo if you find it useful!
