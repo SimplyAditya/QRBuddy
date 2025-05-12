@@ -32,12 +32,12 @@ QR Buddy is a modern, intuitive QR code generator built with React and Tailwind 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/qr-buddy.git
+   git clone https://github.com/SimplyAditya/QRBuddy.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd qr-buddy
+   cd QRBuddy
    ```
 
 3. Install dependencies:
@@ -61,7 +61,7 @@ QR Buddy is a modern, intuitive QR code generator built with React and Tailwind 
 
 ## 🎨 Customization
 
-- **Size**: Adjust QR code size from 128x128 to 512x512 pixels
+- **Size**: Adjust QR code size from 128x128 to 320x320 pixels
 - **Colors**: Full RGB color picker for both background and QR code
 - **Title**: Optional title that appears both on display and in the downloaded image
 - **Theme**: Quick reset option to restore default styling
