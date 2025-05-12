@@ -4,6 +4,48 @@ import QRCode from "react-qr-code";
 function App() {
   const [text, setText] = useState("");
 
+  const handleDownload = () => {
+    if (!text) {
+      alert('Please enter some text first!')
+      return
+    }
+
+    // Get the QR code SVG element
+    const svg = document.querySelector('.qr-code svg');
+    if (!svg) return;
+
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    
+    // Convert SVG to data URL
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const URL = window.URL || window.webkitURL || window;
+    const blobURL = URL.createObjectURL(svgBlob);
+
+    // Create image from SVG
+    const img = new Image();
+    img.onload = () => {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, 256, 256);
+      
+      // Convert canvas to PNG and trigger download
+      const pngUrl = canvas.toDataURL('image/png');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = pngUrl;
+      downloadLink.download = 'text.png';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(blobURL);
+    };
+    img.src = blobURL;
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center p-8 bg-gradient-to-br from-indigo-500 to-purple-600">
       <h1 className="text-4xl font-bold text-white text-center mb-8 drop-shadow-lg">
@@ -21,7 +63,7 @@ function App() {
         className="w-full max-w-md px-4 py-3 text-lg rounded-lg shadow-md mb-8 bg-white/90 focus:outline-none focus:ring-2 focus:ring-purple-300"
       />
 
-      <div className={`bg-white/90 rounded-xl shadow-lg flex items-center justify-center text-gray-600 mb-6 ${text.length == 0 ? " h-96 w-96 " : ""} transition-all duration-300`}>
+      <div className={`qr-code bg-white/90 rounded-xl shadow-lg flex items-center justify-center text-gray-600 mb-6 ${text.length == 0 ? " h-96 w-96 " : ""} transition-all duration-300`}>
         {!text.length == 0 ? <QRCode
           size={256}
           style={{ height: "auto", maxWidth: "100%", width: "100%" }}
@@ -32,7 +74,8 @@ function App() {
       </div>
 
       <button
-        disabled = {text.length == 0}
+        onClick={handleDownload}
+        disabled={text.length == 0}
         className="px-6 py-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-2"
       >
         <svg
