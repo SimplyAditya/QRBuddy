@@ -174,7 +174,7 @@ function App() {
       </button>
 
       <a
-        href="https://aditya-bansal.tech"
+        href="https://adityabansal.in"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 flex items-center gap-2 text-white font-medium bg-black/30 hover:bg-black/40 px-4 py-2.5 rounded-full backdrop-blur-md hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl group"
