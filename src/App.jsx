@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import QRCode from "react-qr-code";
+import { QRCode } from "react-qrcode-logo";
 import { FiExternalLink, FiRefreshCw } from "react-icons/fi";
 import html2canvas from "html2canvas";
 
@@ -16,11 +16,28 @@ function App() {
   const [fgColor, setFgColor] = useState(defaultState.fgColor);
   const [size, setSize] = useState(defaultState.size);
   const [title, setTitle] = useState("");
+  const [logoImage, setLogoImage] = useState(null);
+  const [logoWidth, setLogoWidth] = useState(60);
+  const [logoHeight, setLogoHeight] = useState(60);
 
   const handleReset = () => {
     setBgColor(defaultState.bgColor);
     setFgColor(defaultState.fgColor);
     setSize(defaultState.size);
+    setLogoImage(null);
+    setLogoWidth(60);
+    setLogoHeight(60);
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setLogoImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleDownload = async () => {
@@ -122,6 +139,43 @@ function App() {
             </label>
           </div>
         </div>
+
+        <div className="space-y-4 bg-white/10 p-4 rounded-lg">
+          <label className="text-white text-sm block mb-2">Logo Image (Optional)</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 cursor-pointer"
+          />
+          
+          {logoImage && (
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              <label className="text-white text-sm">
+                Logo Width: {logoWidth}px
+                <input
+                  type="range"
+                  min="20"
+                  max="100"
+                  value={logoWidth}
+                  onChange={(e) => setLogoWidth(Number(e.target.value))}
+                  className="w-full mt-1"
+                />
+              </label>
+              <label className="text-white text-sm">
+                Logo Height: {logoHeight}px
+                <input
+                  type="range"
+                  min="20"
+                  max="100"
+                  value={logoHeight}
+                  onChange={(e) => setLogoHeight(Number(e.target.value))}
+                  className="w-full mt-1"
+                />
+              </label>
+            </div>
+          )}
+        </div>
       </div>
 
       <div 
@@ -138,12 +192,16 @@ function App() {
         {!text.length == 0 ? (
           <div style={{ width: `${size}px`, height: `${size}px`, maxWidth: '100%', maxHeight: '100%' }}>
             <QRCode
-              size={size}
-              style={{ width: '100%', height: '100%' }}
               value={text}
+              size={size}
               bgColor={bgColor}
               fgColor={fgColor}
-              level="M"
+              ecLevel="M"
+              logoImage={logoImage}
+              logoWidth={logoWidth}
+              logoHeight={logoHeight}
+              logoOpacity={1}
+              removeQrCodeBehindLogo={true}
             />
           </div>
         ) : (
